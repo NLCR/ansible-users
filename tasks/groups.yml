@@ -1,0 +1,8 @@
+- name: User groups are present
+  group:
+    name: '{{ item.key }}'
+    git: '{{ item.value.gid | default(omit) }}'
+    state: '{{ item.value.state | default("present") }}'
+    system: '{{ item.value.system | default("no") }}'
+  with_dict: '{{ user_groups }}'
+  when: groups is defined

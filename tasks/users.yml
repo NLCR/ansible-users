@@ -36,6 +36,7 @@
     state: present
     key: '{{ item.value.key }} {{ item.value.mail }}'
   with_dict: '{{ admins }}'
+  ignore_errors: '{{ ansible_check_mode }}'
   when: admins is defined
 
 - name: Add private keys
